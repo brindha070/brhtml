@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillSpace: A Digital Portfolio</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        background: #0d1117;
+        color: #e6edf3;
+    }
+
+    header {
+        width: 100%;
+        background: #161b22;
+        color: #58a6ff;
+        padding: 25px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px #58a6ff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    nav {
+        width: 200px;
+        background: rgba(22, 27, 34, 0.8);
+        backdrop-filter: blur(10px);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        padding-top: 30px;
+        border-right: 1px solid #30363d;
+    }
+
+    nav button {
+        background: none;
+        border: none;
+        color: #e6edf3;
+        padding: 15px 20px;
+        text-align: left;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    nav button:hover {
+        color: #58a6ff;
+        text-shadow: 0 0 8px #58a6ff;
+        transform: translateX(8px);
+    }
+
+    #content {
+        margin-left: 220px;
+        padding: 120px 30px 80px 30px;
+        flex: 1;
+        background: #161b22;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(88, 166, 255, 0.2);
+        max-width: 900px;
+        animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h2 {
+        color: #58a6ff;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #30363d;
+        padding-bottom: 5px;
+    }
+
+    /* Projects */
+    .project {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #21262d;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .project:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px #58a6ff;
+    }
+
+    /* About Card with Flip */
+    .about-card {
+        perspective: 1000px;
+        width: 300px;
+        height: 200px;
+    }
+    .about-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+    }
+    .about-card:hover .about-inner {
+        transform: rotateY(180deg);
+    }
+    .about-front, .about-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #21262d;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .about-front img {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        border: 3px solid #58a6ff;
+    }
+    .about-back {
+        transform: rotateY(180deg);
+        padding: 20px;
+        font-size: 14px;
+    }
+
+    /* Contact */
+    .contact-info p {
+        margin: 10px 0;
+        transition: 0.3s;
+    }
+    .contact-info p:hover {
+        color: #58a6ff;
+        text-shadow: 0 0 6px #58a6ff;
+    }
+    .contact-info a {
+        color: #58a6ff;
+        text-decoration: none;
+    }
+
+    footer {
+        width: 100%;
+        text-align: center;
+        background: #161b22;
+        color: #8b949e;
+        padding: 15px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    ✨ SkillSpace: A Digital Portfolio
+</header>
+
+<nav>
+    <button onclick="showSection('home')">🏠 Home</button>
+    <button onclick="showSection('about')">👨‍💻 About</button>
+    <button onclick="showSection('projects')">📂 Projects</button>
+    <button onclick="showSection('contact')">📞 Contact</button>
+</nav>
+
+<div id="content"></div>
+
+<footer>
+    © 2025 SkillSpace | Designed with ❤ using HTML, CSS & JS
+</footer>
+
+<script>
+    function showSection(section) {
+        let content = document.getElementById('content');
+        if (section === 'home') {
+            content.innerHTML = `
+                <h2>Welcome to SkillSpace!</h2>
+                <p>Hello there! This is my digital portfolio where I showcase my skills, projects, and contact details in an interactive way. Use the menu to explore!</p>
+            `;
+        } else if (section === 'about') {
+            content.innerHTML = `
+                <h2>About Me</h2>
+                <div class="about-card">
+                    <div class="about-inner">
+                        <div class="about-front">
+                            <img src="https://via.placeholder.com/120" alt="Profile Picture">
+                        </div>
+                        <div class="about-back">
+                            <p>I’m a passionate developer skilled in HTML, CSS, and JavaScript. I love creating interactive, user-friendly websites that make an impact.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else if (section === 'projects') {
+            content.innerHTML = `
+                <h2>My Projects</h2>
+                <div class="project"><strong>🌐 SkillSpace</strong> - A responsive digital portfolio with animations.</div>
+                <div class="project"><strong>📝 To-Do App</strong> - A smart task manager with JavaScript features.</div>
+                <div class="project"><strong>🧮 Calculator</strong> - A stylish calculator with real-time results.</div>
+            `;
+        } else if (section === 'contact') {
+            content.innerHTML = `
+                <h2>Contact Me</h2>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> brindhav327@gmail.com</p>
+                    <p><strong>Phone:</strong> +91 7539972578</p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/yourusername" target="_blank">github.com/brindha070</a></p>
+                </div>
+            `;
+        }
+    }
+
+    // Show Home by default
+    showSection('home');
+</script>
+
+</body>
+</html>
